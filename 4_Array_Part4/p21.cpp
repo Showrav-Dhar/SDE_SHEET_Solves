@@ -141,3 +141,14 @@ int main()
 
     cerr << "Time elapsed :" << clock() * 1000.0 / CLOCKS_PER_SEC << " ms " << endl;
 }
+
+
+// Subarray related problems - 
+
+// https://leetcode.com/problems/contiguous-array/description/
+// https://leetcode.com/problems/subarray-sum-equals-k/description/
+// https://leetcode.com/problems/subarrays-with-k-different-integers/description/
+// https://leetcode.com/problems/count-number-of-nice-subarrays/description/
+// https://leetcode.com/problems/binary-subarrays-with-sum/description/
+// https://leetcode.com/problems/subarray-product-less-than-k/description/
+// https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/description/
