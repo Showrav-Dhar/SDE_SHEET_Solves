@@ -261,6 +261,12 @@ int main()
     // Print entire list
     ll.print_ll();  // Output: 1 2 3
 
+    ll.push_back(10);
+
+    ll.print_ll();
+    ll.search_item(10);
+    
+
     return 0;
 }
 
