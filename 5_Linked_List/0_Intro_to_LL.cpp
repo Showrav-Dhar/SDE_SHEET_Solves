@@ -6,30 +6,30 @@ using namespace std;
 class Node
 {
 public:
-    int data;    // Stores the actual value
-    Node *next;  // Pointer to the next node in the list
+    int data;   // Stores the actual value
+    Node *next; // Pointer to the next node in the list
 
     // Constructor: Initializes a new node with given value
     // Time Complexity: O(1) - Constant time operation
     Node(int val)
     {
         data = val;
-        next = nullptr;  // New node initially points to nothing
+        next = nullptr; // New node initially points to nothing
     }
 };
 
 // ==================== LINKED LIST CLASS ====================
 class List
 {
-    Node *head;  // Pointer to the first node (front of list)
-    Node *tail;  // Pointer to the last node (back of list)
+    Node *head; // Pointer to the first node (front of list)
+    Node *tail; // Pointer to the last node (back of list)
 
 public:
     // Constructor: Initializes an empty linked list
     // Time Complexity: O(1)
     List()
     {
-        head = tail = NULL;  // Both head and tail are null for empty list
+        head = tail = NULL; // Both head and tail are null for empty list
     }
 
     // ==================== PUSH_FRONT ====================
@@ -51,10 +51,10 @@ public:
         else
         {
             // Step 3: Link new node to current head
-            newNode->next = head;  // New node points to old head
-            
+            newNode->next = head; // New node points to old head
+
             // Step 4: Update head to point to new node
-            head = newNode;  // New node becomes the new head
+            head = newNode; // New node becomes the new head
         }
     }
 
@@ -76,10 +76,10 @@ public:
         else
         {
             // Step 3: Link current tail to new node
-            tail->next = newNode;  // Old tail now points to new node
-            
+            tail->next = newNode; // Old tail now points to new node
+
             // Step 4: Update tail to point to new node
-            tail = newNode;  // New node becomes the new tail
+            tail = newNode; // New node becomes the new tail
         }
     }
 
@@ -98,13 +98,13 @@ public:
 
         // Step 2: Store current head in temp (to delete later)
         Node *temp = head;
-        
+
         // Step 3: Move head to next node
         head = head->next;
-        
+
         // Step 4: Disconnect temp from list (optional but good practice)
         temp->next = nullptr;
-        
+
         // Step 5: Delete the old head from memory (prevent memory leak)
         delete temp;
     }
@@ -125,8 +125,8 @@ public:
         // Step 2: Special case - only one node in list
         if (head == tail)
         {
-            delete head;           // Delete the only node
-            head = tail = NULL;    // Reset both head and tail to NULL
+            delete head;        // Delete the only node
+            head = tail = NULL; // Reset both head and tail to NULL
             return;
         }
 
@@ -142,12 +142,38 @@ public:
 
         // Step 5: Disconnect the last node
         temp->next = NULL;
-        
+
         // Step 6: Delete tail from heap memory
         delete tail;
-        
+
         // Step 7: Update tail to second-last node
         tail = temp;
+    }
+
+    void pop_back_2()
+    {
+        // if tail pointer is not present
+        if (head == nullptr)
+        {
+            return head;
+        }
+
+        if (head->next == nullptr)
+        {
+            delete head;
+            return nullptr;
+        }
+
+        Node *tempNode = head;
+
+        while (tempNode->next->next != nullptr) // finding 2nd last item, the item before the last item
+        {
+            tempNode = tempNode->next;
+        }
+
+        delete tempNode->next; // deleting the connection between the 2nd last and last item
+
+        tempNode->next = nullptr; // making the second last item point to null, which makes this item as last item
     }
 
     // ==================== INSERT ====================
@@ -188,10 +214,10 @@ public:
 
         // Step 5: Create new node
         Node *newNode = new Node(val);
-        
+
         // Step 6: Link new node to next node
         newNode->next = temp->next;
-        
+
         // Step 7: Link previous node to new node
         temp->next = newNode;
     }
@@ -204,7 +230,7 @@ public:
     {
         // Step 1: Start from head
         Node *temp = head;
-        int pos = 0;  // Track current position
+        int pos = 0; // Track current position
 
         // Step 2: Traverse the entire list
         while (temp != NULL)
@@ -213,9 +239,9 @@ public:
             if (temp->data == key)
             {
                 cout << "Item found at index = " << pos << endl;
-                return;  // Exit once found
+                return; // Exit once found
             }
-            
+
             // Step 4: Move to next node and increment position
             temp = temp->next;
             pos++;
@@ -237,10 +263,10 @@ public:
         // Step 2: Traverse and print each node's data
         while (tempNode != NULL)
         {
-            cout << tempNode->data << " ";  // Print current node data
-            tempNode = tempNode->next;       // Move to next node
+            cout << tempNode->data << " "; // Print current node data
+            tempNode = tempNode->next;     // Move to next node
         }
-        cout << endl;  // New line after printing all elements
+        cout << endl; // New line after printing all elements
     }
 };
 
@@ -251,21 +277,20 @@ int main()
     List ll;
 
     // Insert elements at front: 3 -> 2 -> 1
-    ll.push_front(3);  // List: 3
-    ll.push_front(2);  // List: 2 -> 3
-    ll.push_front(1);  // List: 1 -> 2 -> 3
+    ll.push_front(3); // List: 3
+    ll.push_front(2); // List: 2 -> 3
+    ll.push_front(1); // List: 1 -> 2 -> 3
 
     // Search for value 2 in the list
-    ll.search_item(2);  // Output: Item found at index = 1
+    ll.search_item(2); // Output: Item found at index = 1
 
     // Print entire list
-    ll.print_ll();  // Output: 1 2 3
+    ll.print_ll(); // Output: 1 2 3
 
     ll.push_back(10);
 
     ll.print_ll();
     ll.search_item(10);
-    
 
     return 0;
 }
