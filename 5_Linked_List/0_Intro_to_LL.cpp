@@ -155,13 +155,13 @@ public:
         // if tail pointer is not present
         if (head == nullptr)
         {
-            return head;
+            return ;
         }
 
         if (head->next == nullptr)
         {
             delete head;
-            return nullptr;
+            return ;
         }
 
         Node *tempNode = head;
